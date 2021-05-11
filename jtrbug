@@ -13,7 +13,7 @@ echo -e "${BRed}JitterBug-v(1.1)${NC} ${BGreen}starting...${NC}"
 
 if [ $# -lt 1 ]
 then
-	echo -e "${BRed}Insufficent Arguments${NC}...."
+	echo -e "\n${BRed}Insufficent Arguments${NC}...."
 	echo -e "${BGreen} Usage: ${NC}"
 	echo -e "	${BRed}./jtrbug${NC} ${BGreen}<target-ip>${NC}"
 	exit
