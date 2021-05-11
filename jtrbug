@@ -1,0 +1,81 @@
+#!/bin/bash
+
+BGreen='\033[1;32m'
+BRed='\033[1;31m'
+NC='\033[0m'
+BBlue='\033[1;34m'
+
+echo -e "[${BGreen}+${NC}] Performing ${BRed}passive-analysis${NC} of the discovered hosts"
+sleep 1
+
+ip=${1}
+
+function get_ip_info() {
+	for param in $@
+	do
+		cat ${ip}_m_info | grep "${param}" | cut -d ":" -f 2 | cut -d "<" -f 1 >> ${ip}_info
+	done
+}
+
+
+function ip_info() {
+	curl -s -H"User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0" https://www.ipligence.com/ip-address?ip=${1} > ${1}_m_info
+	get_ip_info Reverse City Country Continent
+	rm ${1}_m_info
+	echo -e "\n[${BGreen}+${NC}] Displaying discovered info about the host ${1}"
+
+	for item in $(cat ${1}_info)
+	do
+		echo -e "${BGreen}→${NC} ${item}"
+	done
+}
+
+function display_ports() {
+	echo -e "[${BGreen}+${NC}] Following ports may be open on the host ${BRed}${1}${NC}\n"
+	for port in $(cat ${1}_ports)
+	do
+		echo -e "${BGreen}${port}${NC}"
+	done
+	
+}
+
+function display_cve() {
+	echo -e "[${BGreen}+${NC}] Following ${BRed}CVE's${NC} were found on the host ${BRed}${1}${NC}\n"
+	for cve in $(cat ${1}_cve)
+	do
+		echo -e "${BGreen}${cve}${NC}"
+	done
+}
+
+function port_scan_cens() {
+	echo -e "\n[${BGreen}+${NC}] Querying for ${BGreen}open${NC} ${BRed}ports${NC} on ${BRed}${1}${NC}"
+	curl -s -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/78.0" https://censys.io/ipv4/${1} > ${1}_m_ports
+	cat ${1}_m_ports | grep 'href="#.*/' | cut -d '>' -f 2 | cut -d '<' -f 1 > ${1}_ports
+	rm ${1}_m_ports
+	display_ports ${1}
+	sleep 1
+}
+
+function cve_scan_shodan() {
+	echo -e "\n[${BGreen}+${NC}] searching for potential ${BRed}CVE's${NC} on ${BRed}${1}${NC} if any.."
+	curl -s -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/78.0" https://www.shodan.io/host/${1} > ${1}_m_cve
+	cat ${1}_m_cve | grep -Eo 'CVE-.*<' | cut -d "<" -f 1 > ${1}_cve
+	rm ${1}_m_cve
+	display_cve ${1}
+	sleep 1
+}
+
+function final_report() {
+	echo -e "\n[${BGreen}+${NC}] Generating Final report for ${BRed}${1}${NC}"
+	touch ${1}.report
+	cat ${1}_info >> ${1}.report && rm ${1}_info
+	cat ${1}_ports >> ${1}.report && rm ${1}_ports
+	cat ${1}_cve >> ${1}.report && rm ${1}_cve
+	echo -e "\n[${BGreen}+${NC}] report saved to ${BRed} ${1}.report${NC}\n"
+}
+
+
+ip_info ${1}
+port_scan_cens ${1}
+cve_scan_shodan ${1}
+final_report ${1}
