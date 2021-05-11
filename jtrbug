@@ -8,6 +8,15 @@ BRed='\033[1;31m'
 NC='\033[0m'
 BBlue='\033[1;34m'
 
+
+if [ $# -lt 1 ]
+then
+	echo -e "${BRed}Insufficent Arguments${NC}...."
+	echo -e "${BGreen} Usage: ${NC}"
+	echo -e "	${BRed}./jtrbug${NC} ${BGreen}<target-ip>${NC}"
+	exit
+fi
+
 echo -e "[${BGreen}+${NC}] Performing ${BRed}passive-analysis${NC} of the discovered hosts"
 sleep 1
 
