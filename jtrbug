@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Author :: SxNade --> https://github.com/SxNade  ::: SxNade@protonmail.com
+
+
 BGreen='\033[1;32m'
 BRed='\033[1;31m'
 NC='\033[0m'
