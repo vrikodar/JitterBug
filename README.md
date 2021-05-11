@@ -6,3 +6,20 @@ JitterBug passively searches for Basic Info, open ports, potential CVE's on the 
 **JitterBug is Officially a part of DiaLog Project ::: CHECK OUT PROJECT DiaLog on the Link Below**
 
 https://github.com/SxNade/DiaLog
+
+
+# Installing and Running JitterBug
+
+*curl should be already installed on your system*
+
+      $ sudo apt install curl
+
+**Install and run as follows**
+
+
+        $ git clone https://github.com/SxNade/JitterBug
+        $ cd JitterBug
+        $ chmod +x jtrbug
+        
+        $ ./jtbug <Target-IP>
+
