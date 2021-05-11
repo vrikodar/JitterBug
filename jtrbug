@@ -8,7 +8,7 @@ BRed='\033[1;31m'
 NC='\033[0m'
 BBlue='\033[1;34m'
 
-echo -e "${BRed}JitterBug-v(1.1)${NC} ${BGreen}starting...${NC}"
+echo -e "\n${BRed}JitterBug-v(1.1)${NC} ${BGreen}starting...${NC}\n"
 
 
 if [ $# -lt 1 ]
