@@ -21,5 +21,5 @@ https://github.com/SxNade/DiaLog
         $ cd JitterBug
         $ chmod +x jtrbug
         
-        $ ./jtbug <Target-IP>
+        $ ./jtrbug <Target-IP>
 
