@@ -10,6 +10,8 @@ https://github.com/SxNade/DiaLog
 
 # Installing and Running JitterBug
 
+![Capture](https://github.com/SxNade/Cjunk/blob/main/jtrbug.gif)
+
 *curl should be already installed on your system*
 
       $ sudo apt install curl
