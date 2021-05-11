@@ -3,6 +3,6 @@ JitterBug passively searches for Basic Info, open ports, potential CVE's on the 
 
 # NOTE
 
-**JitterBug is Officially a part of DiaLog Project ::: CHECK OUT PROJECT DiaLog on the Link Below **
+**JitterBug is Officially a part of DiaLog Project ::: CHECK OUT PROJECT DiaLog on the Link Below**
 
 https://github.com/SxNade/DiaLog
