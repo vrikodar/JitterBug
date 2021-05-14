@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Author :: SxNade --> https://github.com/SxNade  ::: SxNade@protonmail.com
-
+# Stealth Port-scanner, CVE-Scanner 
 
 BGreen='\033[1;32m'
 BRed='\033[1;31m'
