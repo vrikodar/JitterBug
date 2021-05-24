@@ -2,6 +2,8 @@
 
 # Author :: SxNade --> https://github.com/SxNade  ::: SxNade@protonmail.com
 # Stealth Port-scanner, CVE-Scanner 
+# Like it smash the star
+
 
 BGreen='\033[1;32m'
 BRed='\033[1;31m'
