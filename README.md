@@ -1,6 +1,8 @@
 # JitterBug
 JitterBug passively searches for Basic Info, open ports, potential CVE's on the given Target IP's in third party databases without Direct interactions with the targets making it completely stealthy
 
+![chillin](https://github.com/SxNade/JitterBug/blob/main/jtrbg.gif)
+
 **Please Note That JitterBug Does not interact with the Target IP at all ...The information Gathered By JitterBug is Collected in a very Stealth way from 3rd Party Sources**
 
 
