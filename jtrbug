@@ -10,14 +10,14 @@ BRed='\033[1;31m'
 NC='\033[0m'
 BBlue='\033[1;34m'
 
-echo -e "\n${BRed}JitterBug-v(1.1)${NC} ${BGreen}starting...${NC}\n"
+echo -e "\n${BRed}JitterBug-v(1.2)${NC} ${BGreen}starting...${NC}\n"
 
 
 if [ $# -lt 1 ]
 then
 	echo -e "\n${BRed}Insufficent Arguments${NC}...."
 	echo -e "${BGreen} Usage: ${NC}"
-	echo -e "	${BRed}./jtrbug${NC} ${BGreen}<target-ip>${NC}"
+	echo -e "	${BRed}./jtrbug${NC} ${BGreen}<target-ips-seprated-by-space>${NC}"
 	exit
 fi
 
@@ -91,7 +91,13 @@ function final_report() {
 }
 
 
-ip_info ${1}
-port_scan_cens ${1}
-cve_scan_shodan ${1}
-final_report ${1}
+for ip in ${@}
+do
+	ip_info ${ip}
+	port_scan_cens ${ip}
+	cve_scan_shodan ${ip}
+	final_report ${ip}
+	#echo ${ip}
+	echo -e "\n${BBlue}=============================================================================================${NC}"
+done
+
